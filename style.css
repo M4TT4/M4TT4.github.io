@@ -11,6 +11,21 @@
     background-color: #f4f4f4;
     color: #333;
   }
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  body.dark-mode header {
+    background-color: #1e1e1e;
+  }
+  
+  body.dark-mode footer {
+    background-color: #1e1e1e;
+  }
+  
+
   
   header {
     background-color: #fff;

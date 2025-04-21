@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Name</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
@@ -17,7 +18,7 @@
   </header>
 
   <section id="hero">
-    <img src="images/profile.jpg" alt="Profile Picture" />
+    <img src="assets/images/profile.jpg" alt="Profile Picture" />
     <h2>Hi, I'm Your Name</h2>
     <p>A brief introduction about yourself.</p>
   </section>
@@ -36,6 +37,20 @@
     </div>
     <!-- Add more projects as needed -->
   </section>
+  
+  <div class="project-box" onclick="openModal('project1')">
+    <h3>Project Title</h3>
+    <p>Short description...</p>
+  </div>
+
+  <div id="project1" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('project1')">&times;</span>
+      <h2>Project Details</h2>
+      <p>Extended information about the project.</p>
+    </div>
+  </div>
+
 
   <section id="contact">
     <h2>Contact</h2>
@@ -48,3 +63,4 @@
   </footer>
 </body>
 </html>
+<button id="dark-mode-toggle">Toggle Dark Mode</button>

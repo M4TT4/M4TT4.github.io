@@ -11,3 +11,4 @@ document.getElementById('dark-mode-toggle').addEventListener('click', () => {
   function closeModal(id) {
     document.getElementById(id).classList.add('hidden');
   }
+  

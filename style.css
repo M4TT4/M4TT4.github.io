@@ -74,6 +74,10 @@
     display: none;
   }
   
+  .hidden {
+    display: none;
+  }
+  
   .modal {
     position: fixed;
     top: 0;
@@ -89,4 +93,5 @@
     padding: 20px;
     width: 80%;
   }
+  
   

@@ -67,7 +67,7 @@
       <p>blah blah about me stuff</p>
     </div>
   </div>
-  
+
   <div id="project2" class="modal hidden">
     <div class="modal-content" id="draggable-project2" data-draggable>
       <span class="close-button" onclick="closeModal('project2')">&times;</span>
@@ -75,7 +75,7 @@
       <p>blah blah work stuff.</p>
     </div>
   </div>
-  
+
   <div id="project3" class="modal hidden">
     <div class="modal-content" id="draggable-project3" data-draggable>
       <span class="close-button" onclick="closeModal('project3')">&times;</span>
@@ -117,11 +117,8 @@
   let offsetX = 0;
   let offsetY = 0;
   let currentModal = null;
-
-  // Track position for each modal
   const modalPositions = {};
 
-  // Dragging handlers
   document.querySelectorAll('[data-draggable]').forEach(modal => {
     modal.addEventListener('mousedown', function (e) {
       if (e.target.classList.contains('close-button')) return;
@@ -145,9 +142,8 @@
 
     currentModal.style.left = `${left}px`;
     currentModal.style.top = `${top}px`;
-    currentModal.style.transform = 'none'; // stop transform interfering
+    currentModal.style.transform = 'none';
 
-    // Save the position for this modal
     modalPositions[currentModal.id] = { left, top };
   });
 
@@ -159,21 +155,17 @@
     currentModal = null;
   });
 
-  // Open modal and restore position if available
   function openModal(id) {
     const modal = document.getElementById(id);
     modal.classList.remove('hidden');
 
     const content = modal.querySelector('[data-draggable]');
 
-    // Restore saved position or center it manually
     if (modalPositions[content.id]) {
       const { left, top } = modalPositions[content.id];
       content.style.left = `${left}px`;
       content.style.top = `${top}px`;
-      content.style.transform = 'none';
     } else {
-      // Manually center it (once)
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const width = content.offsetWidth;
@@ -184,7 +176,6 @@
 
       content.style.left = `${left}px`;
       content.style.top = `${top}px`;
-      content.style.transform = 'none';
     }
   }
 
@@ -192,18 +183,6 @@
     document.getElementById(id).classList.add('hidden');
   }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

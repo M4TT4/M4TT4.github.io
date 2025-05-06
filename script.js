@@ -20,3 +20,6 @@ document.getElementById('dark-mode-toggle').addEventListener('click', () => {
     content.style.top = `${100 + Math.random() * 200}px`;
     content.style.left = `${100 + Math.random() * 200}px`;
   }
+
+
+  modalPositions[content.id] = { left, top };

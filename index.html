@@ -43,17 +43,53 @@
   </section>
 
   <!-- Clickable Box -->
-<div class="project-box" onclick="openModal('project1')">
-  <h3>Work</h3>
-  
-</div>
+
+  <div class="project-row">
+    <div class="project-box" onclick="openModal('project1')">
+      <h3>About</h3>
+      <p>Short description</p>
+    </div>
+    <div class="project-box" onclick="openModal('project2')">
+      <h3>Work</h3>
+      <p>Short description</p>
+    </div>
+    <div class="project-box" onclick="openModal('project3')">
+      <h3>Email</h3>
+      <p>Short description</p>
+    </div>
+  </div>
 
 <!-- Modal Content -->
 <div id="project1" class="modal hidden">
   <div class="modal-content" id="draggable-modal">
     <span class="close-button" onclick="closeModal('project1')">&times;</span>
-    <h2>Project Details</h2>
-    <p>Extended information about the project.</p>
+    <h2>About me</h2>
+    <p>blah blah about me stuff</p>
+  </div>
+
+
+  
+</div>
+
+
+<div id="project2" class="modal hidden">
+  <div class="modal-content" id="draggable-modal">
+    <span class="close-button" onclick="closeModal('project2')">&times;</span>
+    <h2>work stuff</h2>
+    <p>blah blah work stuff.</p>
+  </div>
+
+
+  
+</div>
+
+
+
+<div id="project3" class="modal hidden">
+  <div class="modal-content" id="draggable-modal">
+    <span class="close-button" onclick="closeModal('project3')">&times;</span>
+    <h2>emai lme </h2>
+    <p>yah email me bitch</p>
   </div>
 
 

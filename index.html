@@ -120,24 +120,24 @@
       isDragging = true;
       currentModal = modal;
 
-      // Get the initial offset of mouse position within the modal
-      offsetX = e.clientX - modal.getBoundingClientRect().left;
-      offsetY = e.clientY - modal.getBoundingClientRect().top;
+      // Correct calculation of offsetX and offsetY (relative to mouse position)
+      const rect = modal.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;  // Mouse position inside modal
+      offsetY = e.clientY - rect.top;   // Mouse position inside modal
 
-      // Make sure modal is draggable and set transition for smooth move
-      modal.style.position = 'absolute';  // Allow modal to move freely
-      modal.style.transition = 'none';  // Disable transition while dragging
-      modal.style.zIndex = 1001; // Make sure it stays on top
+      // Disable transition while dragging
+      modal.style.transition = 'none';  // Disable smooth transition while dragging
+      modal.style.zIndex = 1001; // Ensure modal stays on top when dragging
     });
   });
 
   // Update position of modal as mouse moves
   document.addEventListener('mousemove', (e) => {
     if (isDragging && currentModal) {
-      const left = e.clientX - offsetX;
-      const top = e.clientY - offsetY;
+      const left = e.clientX - offsetX;  // Update left position
+      const top = e.clientY - offsetY;   // Update top position
 
-      // Update the modal position smoothly while dragging
+      // Update modal's position
       currentModal.style.left = `${left}px`;
       currentModal.style.top = `${top}px`;
     }
@@ -145,13 +145,12 @@
 
   // Stop dragging when mouse is released
   document.addEventListener('mouseup', () => {
+    if (isDragging && currentModal) {
+      // Re-enable smooth transition when drag ends
+      currentModal.style.transition = 'left 0.2s ease, top 0.2s ease';
+    }
     isDragging = false;
     currentModal = null;
-
-    // Re-enable transition once dragging stops
-    if (currentModal) {
-      currentModal.style.transition = 'left 0.2s ease, top 0.2s ease';  // Smooth transition when released
-    }
   });
 
   // Toggle modal visibility
@@ -163,6 +162,7 @@
     document.getElementById(id).classList.add('hidden');
   }
 </script>
+
 
 
 

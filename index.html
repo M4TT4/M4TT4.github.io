@@ -118,8 +118,11 @@
   let offsetX, offsetY;
   let currentModal = null;
 
+  // Store last known positions
+  const modalPositions = new Map();
+
   document.querySelectorAll('[data-draggable]').forEach(modal => {
-    modal.addEventListener('mousedown', function(e) {
+    modal.addEventListener('mousedown', function (e) {
       if (e.target.classList.contains('close-button')) return;
 
       isDragging = true;
@@ -135,14 +138,20 @@
     });
   });
 
-  document.addEventListener('mousemove', function(e) {
+  document.addEventListener('mousemove', function (e) {
     if (!isDragging || !currentModal) return;
 
-    currentModal.style.left = `${e.clientX - offsetX}px`;
-    currentModal.style.top = `${e.clientY - offsetY}px`;
+    const left = e.clientX - offsetX;
+    const top = e.clientY - offsetY;
+
+    currentModal.style.left = `${left}px`;
+    currentModal.style.top = `${top}px`;
+
+    // Save the position
+    modalPositions.set(currentModal, { left, top });
   });
 
-  document.addEventListener('mouseup', function() {
+  document.addEventListener('mouseup', function () {
     if (isDragging && currentModal) {
       currentModal.style.transition = 'left 0.2s ease, top 0.2s ease';
     }
@@ -151,13 +160,33 @@
   });
 
   function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
+    const modal = document.getElementById(id);
+    modal.classList.remove('hidden');
+
+    const content = modal.querySelector('[data-draggable]');
+
+    // Restore position if previously dragged
+    if (modalPositions.has(content)) {
+      const { left, top } = modalPositions.get(content);
+      content.style.left = `${left}px`;
+      content.style.top = `${top}px`;
+    } else {
+      // First time — center it
+      content.style.left = '50%';
+      content.style.top = '50%';
+      content.style.transform = 'translate(-50%, -50%)';
+    }
   }
 
   function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
+    const modal = document.getElementById(id);
+    modal.classList.add('hidden');
+
+    const content = modal.querySelector('[data-draggable]');
+    content.style.transform = ''; // remove transform so dragging works next time
   }
 </script>
+
 
 
 

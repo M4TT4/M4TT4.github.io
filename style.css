@@ -108,9 +108,9 @@
     left: 10%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    pointer-events: none;  /* Ensures clicking on modal background doesn't block scrolling */
-    z-index: 999;  /* Makes sure it's on top of other elements */
+    align-items: flex-start;
+    pointer-events: none;  /* Background doesn’t block interactions */
+    z-index: 999; /* Ensure the modal stays on top of everything else */
   }
   
   .modal.hidden {
@@ -121,18 +121,18 @@
     background: white;
     padding: 20px;
     border-radius: 8px;
-    position: absolute;
-    pointer-events: auto; /* Makes the modal content clickable */
+    position: absolute;  /* This is important for making it draggable */
+    pointer-events: auto; /* Ensures modal content is clickable */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     width: 300px;
+    cursor: move;  /* Change cursor to show that it's draggable */
   }
   
   /* Close Button */
   .close-button {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
   }
 

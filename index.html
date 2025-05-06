@@ -110,15 +110,6 @@
 
 
 <script>
-  // Toggle modal visibility
-  function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
-  }
-
-  function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
-  }
-
   let isDragging = false;
   let offsetX, offsetY;
   let currentModal = null;
@@ -128,27 +119,45 @@
     modal.addEventListener('mousedown', (e) => {
       isDragging = true;
       currentModal = modal;
+
+      // Get the initial offset of mouse position within the modal
       offsetX = e.clientX - modal.getBoundingClientRect().left;
       offsetY = e.clientY - modal.getBoundingClientRect().top;
-      modal.style.cursor = 'grabbing';
-      modal.style.position = 'absolute';
-      modal.style.zIndex = 1001; // Ensure modal stays on top when dragging
+
+      // Make sure modal is draggable
+      modal.style.position = 'absolute';  // Allow modal to move freely
+      modal.style.zIndex = 1001; // Make sure it stays on top
     });
   });
 
+  // Update position of modal as mouse moves
   document.addEventListener('mousemove', (e) => {
     if (isDragging && currentModal) {
-      currentModal.style.left = `${e.clientX - offsetX}px`;
-      currentModal.style.top = `${e.clientY - offsetY}px`;
+      // Update the modal position relative to the mouse
+      const left = e.clientX - offsetX;
+      const top = e.clientY - offsetY;
+
+      currentModal.style.left = `${left}px`;
+      currentModal.style.top = `${top}px`;
     }
   });
 
+  // Stop dragging when mouse is released
   document.addEventListener('mouseup', () => {
-    if (currentModal) currentModal.style.cursor = 'move';
     isDragging = false;
     currentModal = null;
   });
+
+  // Toggle modal visibility
+  function openModal(id) {
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.add('hidden');
+  }
 </script>
+
 
 
 

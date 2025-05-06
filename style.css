@@ -106,13 +106,11 @@
     position: fixed;
     top: 10%;
     left: 10%;
-    width: auto;
-    height: auto;
-    background: rgba(0, 0, 0, 0.1); /* light overlay or transparent */
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    pointer-events: none; /* allows clicks through */
+    align-items: center;
+    pointer-events: none;  /* Ensures clicking on modal background doesn't block scrolling */
+    z-index: 999;  /* Makes sure it's on top of other elements */
   }
   
   .modal.hidden {
@@ -124,8 +122,9 @@
     padding: 20px;
     border-radius: 8px;
     position: absolute;
-    pointer-events: auto; /* makes content clickable */
+    pointer-events: auto; /* Makes the modal content clickable */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 300px;
   }
   
   /* Close Button */

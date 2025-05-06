@@ -110,10 +110,20 @@
 
 
 <script>
+  // Toggle modal visibility
+  function openModal(id) {
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.add('hidden');
+  }
+
   let isDragging = false;
   let offsetX, offsetY;
   let currentModal = null;
 
+  // Enable dragging for modal content
   document.querySelectorAll('.draggable-modal').forEach(modal => {
     modal.addEventListener('mousedown', (e) => {
       isDragging = true;
@@ -121,8 +131,8 @@
       offsetX = e.clientX - modal.getBoundingClientRect().left;
       offsetY = e.clientY - modal.getBoundingClientRect().top;
       modal.style.cursor = 'grabbing';
-      modal.style.position = 'absolute'; // Required for drag
-      modal.style.zIndex = 1001;
+      modal.style.position = 'absolute';
+      modal.style.zIndex = 1001; // Ensure modal stays on top when dragging
     });
   });
 
@@ -138,15 +148,8 @@
     isDragging = false;
     currentModal = null;
   });
-
-  function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
-  }
-
-  function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
-  }
 </script>
+
 
 
 

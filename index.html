@@ -59,30 +59,33 @@
     </div>
   </div>
 
-<!-- Modal Content -->
+  <!-- MODAL 1 -->
 <div id="project1" class="modal hidden">
-  <div class="modal-content draggable" id="modal1">
+  <div class="modal-content" data-draggable>
     <span class="close-button" onclick="closeModal('project1')">&times;</span>
     <h2>About me</h2>
     <p>blah blah about me stuff</p>
   </div>
 </div>
 
+<!-- MODAL 2 -->
 <div id="project2" class="modal hidden">
-  <div class="modal-content draggable" id="modal2">
+  <div class="modal-content" data-draggable>
     <span class="close-button" onclick="closeModal('project2')">&times;</span>
     <h2>Work stuff</h2>
     <p>blah blah work stuff</p>
   </div>
 </div>
 
+<!-- MODAL 3 -->
 <div id="project3" class="modal hidden">
-  <div class="modal-content draggable" id="modal3">
+  <div class="modal-content" data-draggable>
     <span class="close-button" onclick="closeModal('project3')">&times;</span>
     <h2>Email me</h2>
     <p>yah email me</p>
   </div>
 </div>
+
 
 
 
@@ -113,37 +116,38 @@
 <script>
   let isDragging = false;
   let offsetX, offsetY;
-  let currentDrag = null;
+  let currentModal = null;
 
-  // Add drag behavior to all modals with class 'draggable'
-  document.querySelectorAll('.draggable').forEach(modal => {
+  document.querySelectorAll('[data-draggable]').forEach(modal => {
     modal.addEventListener('mousedown', function(e) {
+      if (e.target.classList.contains('close-button')) return;
+
       isDragging = true;
-      currentDrag = modal;
+      currentModal = modal;
 
       const rect = modal.getBoundingClientRect();
       offsetX = e.clientX - rect.left;
       offsetY = e.clientY - rect.top;
 
       modal.style.position = 'absolute';
-      modal.style.zIndex = 1001;
+      modal.style.zIndex = '1001';
       modal.style.transition = 'none';
     });
   });
 
   document.addEventListener('mousemove', function(e) {
-    if (isDragging && currentDrag) {
-      currentDrag.style.left = `${e.clientX - offsetX}px`;
-      currentDrag.style.top = `${e.clientY - offsetY}px`;
-    }
+    if (!isDragging || !currentModal) return;
+
+    currentModal.style.left = `${e.clientX - offsetX}px`;
+    currentModal.style.top = `${e.clientY - offsetY}px`;
   });
 
   document.addEventListener('mouseup', function() {
-    if (isDragging && currentDrag) {
-      currentDrag.style.transition = 'left 0.2s ease, top 0.2s ease';
+    if (isDragging && currentModal) {
+      currentModal.style.transition = 'left 0.2s ease, top 0.2s ease';
     }
     isDragging = false;
-    currentDrag = null;
+    currentModal = null;
   });
 
   function openModal(id) {
@@ -154,6 +158,7 @@
     document.getElementById(id).classList.add('hidden');
   }
 </script>
+
 
 
 

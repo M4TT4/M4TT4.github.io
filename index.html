@@ -122,29 +122,33 @@
 
 <script>
   let isDragging = false;
-  let offsetX, offsetY;
+  let offsetX = 0, offsetY = 0;
+  let currentModal = null;
 
-  // Function to start dragging
-  document.getElementById('draggable-modal').addEventListener('mousedown', (e) => {
-    isDragging = true;
-    offsetX = e.clientX - e.target.getBoundingClientRect().left;
-    offsetY = e.clientY - e.target.getBoundingClientRect().top;
-    e.target.style.cursor = 'grabbing'; // Change cursor to grabbing when dragging
+  document.querySelectorAll('.draggable-modal').forEach(modal => {
+    modal.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      currentModal = modal;
+      offsetX = e.clientX - modal.getBoundingClientRect().left;
+      offsetY = e.clientY - modal.getBoundingClientRect().top;
+      modal.style.cursor = 'grabbing';
+      modal.style.zIndex = 1001;
+    });
   });
 
-  // Function to drag
   document.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-      const modal = document.getElementById('draggable-modal');
-      modal.style.left = `${e.clientX - offsetX}px`;
-      modal.style.top = `${e.clientY - offsetY}px`;
+    if (isDragging && currentModal) {
+      currentModal.style.left = `${e.clientX - offsetX}px`;
+      currentModal.style.top = `${e.clientY - offsetY}px`;
     }
   });
 
-  // Stop dragging
   document.addEventListener('mouseup', () => {
+    if (currentModal) {
+      currentModal.style.cursor = 'move';
+    }
     isDragging = false;
-    document.getElementById('draggable-modal').style.cursor = 'move';
+    currentModal = null;
   });
 
   function openModal(id) {
@@ -155,6 +159,7 @@
     document.getElementById(id).classList.add('hidden');
   }
 </script>
+
 
 
 

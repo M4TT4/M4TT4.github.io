@@ -140,7 +140,7 @@
 
   .draggable-modal {
     cursor: move;
-    position: absolute; /* Required for dragging */
+    
   }
 
   #draggable-modal {

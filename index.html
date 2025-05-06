@@ -111,57 +111,50 @@
 
 <script>
   let isDragging = false;
-  let offsetX, offsetY;
   let currentModal = null;
+  let offsetX = 0;
+  let offsetY = 0;
 
-  // Enable dragging for modal content
+  // Set up drag for every draggable modal
   document.querySelectorAll('.draggable-modal').forEach(modal => {
     modal.addEventListener('mousedown', (e) => {
+      // Only allow dragging from the modal, not its children
+      if (e.target !== modal) return;
+
       isDragging = true;
       currentModal = modal;
 
-      // Correct calculation of offsetX and offsetY (relative to mouse position)
       const rect = modal.getBoundingClientRect();
-      offsetX = e.clientX - rect.left;  // Mouse position inside modal
-      offsetY = e.clientY - rect.top;   // Mouse position inside modal
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
 
-      // Disable transition while dragging
-      modal.style.transition = 'none';  // Disable smooth transition while dragging
-      modal.style.zIndex = 1001; // Ensure modal stays on top when dragging
+      modal.style.position = 'absolute';
+      modal.style.margin = '0';
+      modal.style.transition = 'none'; // disable transition while dragging
+      modal.style.zIndex = 1001;
     });
   });
 
-  // Update position of modal as mouse moves
   document.addEventListener('mousemove', (e) => {
-    if (isDragging && currentModal) {
-      const left = e.clientX - offsetX;  // Update left position
-      const top = e.clientY - offsetY;   // Update top position
+    if (!isDragging || !currentModal) return;
 
-      // Update modal's position
-      currentModal.style.left = `${left}px`;
-      currentModal.style.top = `${top}px`;
-    }
+    const left = e.clientX - offsetX;
+    const top = e.clientY - offsetY;
+
+    currentModal.style.left = `${left}px`;
+    currentModal.style.top = `${top}px`;
   });
 
-  // Stop dragging when mouse is released
   document.addEventListener('mouseup', () => {
     if (isDragging && currentModal) {
-      // Re-enable smooth transition when drag ends
       currentModal.style.transition = 'left 0.2s ease, top 0.2s ease';
     }
+
     isDragging = false;
     currentModal = null;
   });
-
-  // Toggle modal visibility
-  function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
-  }
-
-  function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
-  }
 </script>
+
 
 
 

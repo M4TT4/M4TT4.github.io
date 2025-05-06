@@ -118,15 +118,13 @@
   }
   
   .modal-content {
+    position: absolute;
+    cursor: move;
     background: white;
     padding: 20px;
     border-radius: 8px;
-    position: absolute;  /* This is important for making it draggable */
-    pointer-events: auto; /* Ensures modal content is clickable */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    width: 300px;
-    cursor: move;  /* Change cursor to show that it's draggable */
-    transition: left 0.2s ease, top 0.2s ease;  /* Smooth transition when moving */
+    transition: left 0.2s ease, top 0.2s ease;
   }
   
   /* Close Button */

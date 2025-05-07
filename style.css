@@ -108,11 +108,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: none; /* No dark overlay */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    pointer-events: none; /* Let clicks pass through unless on modal-content */
   }
   
   .modal.hidden {
@@ -128,6 +129,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     cursor: move;
     transition: left 0.2s ease, top 0.2s ease;
+    pointer-events: auto; /* Enable clicks only on the content */
+    z-index: 1001;
   }
   
   /* Close Button */

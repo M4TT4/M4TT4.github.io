@@ -154,4 +154,33 @@
     to { opacity: 1; transform: scale(1); }
   }
   
+
+
+
+
+
+
+
+  /* Add fade-in/out effect to modal */
+.modal {
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Smooth fade-in and fade-out */
+}
+
+.modal.open {
+  opacity: 1; /* Make it visible when open */
+}
+
+/* Optional: Smooth move-in for modal-content */
+.modal-content {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal.open .modal-content {
+  transform: translateY(0); /* Slide into view */
+  opacity: 1; /* Fade in */
+}
+
   

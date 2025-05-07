@@ -88,10 +88,18 @@ document.getElementById('dark-mode-toggle').addEventListener('click', () => {
 // Handle Modal Open and Close
 function openModal(id) {
   const modal = document.getElementById(id);
-  modal.classList.add('open'); // Add 'open' class to trigger fade-in animation
+
+  // First remove the 'hidden' class to make it visible
+  modal.classList.remove('hidden');
+
+  // Trigger reflow to restart CSS animation
+  void modal.offsetWidth;
+
+  // Then add 'open' class to animate
+  modal.classList.add('open');
 
   const content = modal.querySelector('.modal-content');
-  content.style.top = `${100 + Math.random() * 200}px`; // Randomize position
+  content.style.top = `${100 + Math.random() * 200}px`;
   content.style.left = `${100 + Math.random() * 200}px`;
 }
 

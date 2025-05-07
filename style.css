@@ -127,6 +127,14 @@
     pointer-events: auto; /* Enable clicks only on the modal box */
     z-index: 1001;
   }
+
+
+
+  .modal-header{
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
   
   /* Close Button */
   .close-button {

@@ -6,10 +6,16 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #0d1b2a;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: radial-gradient(circle at 50% 100%, #446D8b80 5%, #446D8b 5% 10%, #446D8b80 10% 15%, #446D8b 15% 20%, #446D8b80 20% 25%, #446D8b 25% 30%, #446D8b80 30% 35%, #446D8b 35% 40%, transparent 40%),
+              radial-gradient(circle at 100% 50%, #446D8b80 5%, #446D8b 5% 10%, #446D8b80 10% 15%, #446D8b 15% 20%, #446D8b80 20% 25%, #446D8b 25% 30%, #446D8b80 30% 35%, #446D8b 35% 40%, transparent 40%),
+              radial-gradient(circle at 50% 0%, #446D8b80 5%, #446D8b 5% 10%, #446D8b80 10% 15%, #446D8b 15% 20%, #446D8b80 20% 25%, #446D8b 25% 30%, #446D8b80 30% 35%, #446D8b 35% 40%, transparent 40%),
+              radial-gradient(circle at 0 50%, #446D8b80 5%, #446D8b 5% 10%, #446D8b80 10% 15%, #446D8b 15% 20%, #446D8b80 20% 25%, #446D8b 25% 30%, #446D8b80 30% 35%, #446D8b 35% 40%, transparent 40%);
+  background-size: 3em 3em;
+  background-color: #FFE935;
+  opacity: 1;
+  color: #333;
 }
 
 body.dark-mode {

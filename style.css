@@ -124,8 +124,8 @@ footer {
 .modal-content {
     position: absolute;
     width: 500px;
-    max-width: 90vw; /* makes it responsive */
-    max-height: 80vh; /* prevent it from going offscreen vertically */
+    height: 400px;
+    
     overflow-y: auto; /* adds scroll if content is too tall */
     overflow-x: hidden; /* prevents horizontal overflow */
 

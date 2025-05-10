@@ -125,7 +125,7 @@ footer {
     position: absolute;
     width: 500px;
     height: 400px;
-    
+
     overflow-y: auto; /* adds scroll if content is too tall */
     overflow-x: hidden; /* prevents horizontal overflow */
 
@@ -174,4 +174,12 @@ button:hover, #dark-mode-toggle:hover {
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
+}
+
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90vw;
+    height: 60vh;
+  }
 }
